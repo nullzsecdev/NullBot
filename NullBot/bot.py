@@ -5,6 +5,7 @@ import os
 import discord
 from discord.ext.commands import Bot
 from discord.ext import commands
+from discord.ext.commands import has_permission
 from dotenv import load_dotenv
 load_dotenv()
 token = os.getenv('DISCORD_TOKEN')
@@ -29,6 +30,31 @@ Please introduce yourself by possibly answering a few questions.
 6. Whats your mothers maiden name?""")
 
 bot.remove_command('help')
+@bot.command()
+@has_permission(kick_member=True)
+async def Moderate(ctx):
+    embed = discord.Embed(title="NullBot", description="Moderator Commands:")
+
+    embed.add_field(name="kick", value="Kick a member", inline=False)
+    embed.add_field(name="ban", value="Ban a member", inline=False)
+    embed.add_field(name="unban", value="Unban a member", inline=False)
+    embed.add_field(name="addrole", value="Add a role to a member", inline=False)
+    embed.add_field(name="announce", value="Send an announcement with @everyone", inline=False)
+    embed.add_field(name="nickname", value="Set the nickname of a user", inline=False)
+
+@bot.command()
+async def Resources(ctx):
+    embed = discord.Embed(title="NullBot", description="List of Resources")
+
+    embed.add_field(name="!linuxPrivEsc", value="Resources for Linux Privilesge escalation", inline=False)
+    embed.add_field(name="!windozePrivEsc", value="Resources for Windoze Priviledge escalation", inline=False)
+    embed.add_field(name="!youtube", value="Usefule youtube channels", inline=False)
+    embed.add_field(name="!reddit", value="Useful subreddits", inline=False)
+    embed.add_field(name="!HTBhint", value="Hints for various HTB boxes", inline=False)
+
+@bot.command(pass_context=True)
+async def kick(ctx, userName: discord.User):
+    await bot.kick(userName)
 
 @bot.command()
 async def linuxPrivEsc(ctx):
@@ -56,13 +82,10 @@ async def reddit(ctx):
 
 @bot.command()
 async def help(ctx):
-    embed = discord.Embed(title="Proto Bot", description="List of Commands:", color=0xf7e6d4)
+    embed = discord.Embed(title="NullBot", description="List of Commands:", color=0xf7e6d4)
     
-    embed.add_field(name="!linuxPrivEsc", value="Resources for Linux Privilesge escalation", inline=False)
-    embed.add_field(name="!windozePrivEsc", value="Resources for Windoze Priviledge escalation", inline=False)
-    embed.add_field(name="!youtube", value="Usefule youtube channels", inline=False)
-    embed.add_field(name="!reddit", value="Useful subreddits", inline=False)
-    embed.add_field(name="!HTBhint", value="Hints for various HTB boxes", inline=False)
+    embed.add_field(name="!Resources", value="List of Various resources", inline=False)
+    embed.add_field(name="!Moderate", value="Various moderator commands", inline=False)
     embed.add_field(name="!help", value="Displays this message", inline=False)
 
     await ctx.send(embed=embed)
