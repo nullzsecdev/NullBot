@@ -147,6 +147,7 @@ async def help(ctx):
     
     embed.add_field(name="List of Various Resources", value="!Resources", inline=False)
     embed.add_field(name="Various Mod Commands", value="!Mod", inline=False)
+    embed.add_field(name="Get scores for the days NHL games", value="!nhl", inline=False)
     embed.add_field(name="Display this Message", value="!help", inline=False)
 
     await ctx.send(embed=embed)
