@@ -2,7 +2,9 @@
 # Written by 3nt3r <--Thats me
 
 import os
+import sys
 import discord
+import traceback
 from discord.ext import commands
 from discord.ext.commands import Bot
 from discord.ext.commands import has_permissions
@@ -14,6 +16,15 @@ token = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!')
 
+initial_extensions = ['cogs.nhl']
+
+if __name__ == '__main__':
+    for extension in initial_extensions:
+        try:
+            bot.load_extension(extension)
+        except Exception as e:
+            print(f'Failed to load extentsion {extension}.',file=sys.stderr)
+            traceback.print_exc()
 #Lets you know the bot has successfully logged in
 @bot.event
 async def on_ready():
@@ -141,3 +152,4 @@ async def help(ctx):
     await ctx.send(embed=embed)
 
 bot.run(token)
+
