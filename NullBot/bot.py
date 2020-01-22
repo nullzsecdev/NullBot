@@ -16,7 +16,8 @@ token = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!')
 
-initial_extensions = ['cogs.nhl']
+initial_extensions = ['cogs.nhl',
+                      'cogs.google']
 
 if __name__ == '__main__':
     for extension in initial_extensions:
@@ -148,6 +149,7 @@ async def help(ctx):
     embed.add_field(name="List of Various Resources", value="!Resources", inline=False)
     embed.add_field(name="Various Mod Commands", value="!Mod", inline=False)
     embed.add_field(name="Get scores for the days NHL games", value="!nhl", inline=False)
+    embed.add_field(name="Search google and get top result", value="!google \"<search>\"", inline=False)
     embed.add_field(name="Display this Message", value="!help", inline=False)
 
     await ctx.send(embed=embed)
