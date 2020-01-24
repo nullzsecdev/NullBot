@@ -2,7 +2,5 @@
 **/.env
 **/.google-cookie
 **/__pycache__
-lib/*
-bin/*
-include/*
-pyvenv.cfg
+.venv/*
+.vscode/*
