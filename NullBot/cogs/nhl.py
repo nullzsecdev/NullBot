@@ -10,7 +10,7 @@ import pytz
 import humanize
 #Game data found here
 # https://statsapi.web.nhl.com/api/v1/game/{game id}/feed/live
-DEBUG=True
+DEBUG=False
 """
 Title
 ie BOS @ LVK
