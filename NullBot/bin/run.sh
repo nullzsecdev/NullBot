@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /opt/NullBot/NullBot
-./bot.py
+cd /opt/NullBot
+pipenv run NullBot/bot.py
