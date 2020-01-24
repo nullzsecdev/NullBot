@@ -117,6 +117,8 @@ class NhlCog(commands.Cog):
             for id in game_ids:
                 embed = self.show_game(id)
                 await ctx.send(embed=embed)
+        else:
+            await ctx.send(embed=Embed(title="No Games Today"))
 
 #This setup function is necessary otherwise this program will not be able to interact with the main
 #bot file
