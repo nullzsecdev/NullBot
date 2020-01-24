@@ -7,11 +7,14 @@ verify_ssl = true
 pylint = "*"
 
 [packages]
-pydotenv = "*"
 discord = "*"
 google = "*"
 pymongo = "*"
 requests = "*"
+tabulate = "*"
+humanize = "*"
+pytz = "*"
+python-dotenv = "*"
 
 [requires]
 python_version = "3.7"
