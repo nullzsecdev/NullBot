@@ -16,9 +16,12 @@ token = os.getenv('DISCORD_TOKEN')
 
 bot = commands.Bot(command_prefix='!')
 
+#List of different cogs imported
 initial_extensions = ['cogs.nhl',
-                      'cogs.google']
+                      'cogs.google',
+                      'cogs.url']
 
+#Iterates through the lists of cogs
 if __name__ == '__main__':
     for extension in initial_extensions:
         try:
@@ -26,6 +29,7 @@ if __name__ == '__main__':
         except Exception as e:
             print(f'Failed to load extentsion {extension}.',file=sys.stderr)
             traceback.print_exc()
+            
 #Lets you know the bot has successfully logged in
 @bot.event
 async def on_ready():
