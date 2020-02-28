@@ -37,17 +37,15 @@ async def on_ready():
 
 #Prints this welcome message when a new user joins the server
 @bot.event
-async def on_member_join(member):
-    for channel in member.guild.channels:
-        if str(channel) == "welcome":
-            await channel.send(f"""Hi {member.mention}, welcome to the NullzSec server!
-Please introduce yourself by possibly answering a few questions.
-1. What brings you to the server?
-2. Do you have any previous experience, whether it be with linux, or hacking in general?
-3. Are you a student or do you work in the field, or maybe this is just a hobby?
-4. What is your first pets name?
-5. Whats your SSN?
-6. Whats your mothers maiden name?""")
+async def on_member_join( member):
+
+    embed = discord.Embed(title="Welcome to the Nullzsec Discord Server!", description="""This server was created to mainly bring together people who are interested in hacking. Whether you are just beginning your journey or a seasoned veteran, all are welcome. Please make sure to take a quick look at the #rules.
+
+            Before you can access the rest of the channel's, you must become a member. You can do this by typing '!member' in this chat and a the next available Mod will make you a member. Please be patient as response times may vary since we are not available 24/7.
+
+            This bot has some commands that you can use and can be listed by typing '!help'. It is still a work in progress so functionality is limited at the moment.""")
+    await member.create_dm()
+    await member.dm_channel.send(embed=embed)
 
 #removes the 'help' command so it can be added to the list of commands
 bot.remove_command('help')
@@ -144,6 +142,20 @@ async def reddit(ctx):
     with open("reddit.txt","r") as f:
         subreddit = f.read()
         await ctx.send(subreddit)
+
+#Command that sends a message to the mods private channel to give the new member the member role
+@bot.command()
+@commands.dm_only()
+async def member(ctx):
+    channel = bot.get_channel(586725273173622796)
+    if channel:
+        await channel.send("{} needs to be made a member.".format(ctx.message.author.mention))
+
+#Error handling for the member command    
+@member.error
+async def member_error(ctx, error):
+    if isinstance(error, commands.CheckFailure):
+        await ctx.send('Command not valid here, please send it to me in a DM.')
 
 #Command is the output of the '!help' command
 @bot.command()
